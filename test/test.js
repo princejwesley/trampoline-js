@@ -1,7 +1,7 @@
 let test = require('tape');
 let { trampoline, done, more } = require('../dist/index.js')
 
-const _times = (n, s, acc) => n <= 0 ? done(acc) : more(_times, n - 1, s, `${acc}${s}`)
+const _times = (acc, n, s) => n <= 0 ? done(acc) : more(_times, `${acc}${s}`, n - 1, s)
 const times = trampoline(_times, '')
 
 test('recursive times function', function (t) {
@@ -12,7 +12,7 @@ test('recursive times function', function (t) {
 });
 
 
-const _counter = (n, c) => n <= 0 ? done(c) : more(_counter, n - 1, c + 1)
+const _counter = (c, n) => n <= 0 ? done(c) : more(_counter, c + 1, n - 1)
 const counter = trampoline(_counter, 0)
 
 test('recursive counter function', function (t) {
@@ -29,7 +29,7 @@ test('verify recursive function params', function (t) {
   fun = trampoline(x => done(x))
   t.equal(fun('trampoline'), 'trampoline');
 
-  fun = trampoline((x, y) => y ? done(`${y} ${x}`) : done(`${x} welcome!`), 'Hi')
+  fun = trampoline((x, y) => y ? done(`${x} ${y}`) : done(`${x} welcome!`), 'Hi')
   t.equal(fun('there!'), 'Hi there!');
   t.equal(fun(), 'Hi welcome!');
 });

@@ -4,7 +4,7 @@
 
 Transforms recursion ⟹ loop
 
-##Usage
+## Usage
 
 Install from npm
 
@@ -16,13 +16,14 @@ let { trampoline, done, more } = require('trampoline-js')
 
 
 const times = (() => {
-  const _times = (n, s, acc) =>
+  // optional accumulators & user input
+  const _times = (acc, n, s) =>
     n <= 0
       // on done (base condition)
       ? done(acc)
       // continuation as thunks
-      // takes continuation function and accumulated results
-      : more(_times, n - 1, s, `${acc}${s}`)
+      // takes continuation function and params
+      : more(_times, `${acc}${s}`, n - 1, s)
   // build trampoline by passing recursive function and optional initial objects
   return trampoline(_times, '')
 })()
@@ -31,6 +32,24 @@ times(5, '*')
 // > '*****'
 
 ```
+
+### API
+<code> function trampoline(genFun, [args]) </code>
+> `trampoline` takes **generate/recursive** function and optional arguments (optional). it returns a function of form `function ([arguments]) {}`.
+
+> On invoking returned function, `genFun` will be called with `args` followed by caller supplied `arguments`.
+
+> `genFun` should return either `done` (a wrapper for base case) or `more`(a wrapper function for continuation function). Otherwise, 'Invalid continuation' Error will be thrown.
+
+<code> function more(fun, [args]) </code>
+> `more` should provide continuation function as first parameter and optional args.
+
+<code> function cont(fun, [args]) </code>
+> Alias for `more`.
+
+<code> function done(result) </code>
+> `done` is a base case wrapper which takes terminal object and `result` will be returned as output.
+
 
 ## License
 This plugin is licensed under the [MIT license](https://github.com/princejwesley/trampoline-js/blob/master/LICENSE).

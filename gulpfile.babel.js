@@ -8,7 +8,7 @@ const options = {
   test: ['test/*.js'],
   dist: 'dist',
   config: {
-    "presets": ["es2015", "stage-0"]
+    "presets": ["es2015"]
   }
 }
 

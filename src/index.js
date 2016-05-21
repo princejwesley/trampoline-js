@@ -1,4 +1,8 @@
-import { Continuation, More, Done } from './Continuation.js'
+import {
+  Continuation,
+  More,
+  Done
+} from './Continuation.js'
 import Trampoline from './Trampoline.js'
 
 const more = (fn, ...args) => new More(fn, ...args)
