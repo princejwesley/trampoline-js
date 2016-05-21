@@ -1,6 +1,6 @@
 # trampoline-js
 
-[![npm version](https://badge.fury.io/js/trampoline-js.svg)](http://badge.fury.io/js/trampoline-js) ![license](https://img.shields.io/badge/license-MIT-blue.svg)
+[![Build Status](https://travis-ci.org/princejwesley/trampoline-js.svg)](https://travis-ci.org/princejwesley/trampoline-js) [![npm version](https://badge.fury.io/js/trampoline-js.svg)](http://badge.fury.io/js/trampoline-js) ![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 Transforms recursion ⟹ loop
 
