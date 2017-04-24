@@ -51,7 +51,8 @@ times(5, '*')
 > `done` is a base case wrapper which takes terminal object and `result` will be returned as output.
 
 
+
 ## License
 This plugin is licensed under the [MIT license](https://github.com/princejwesley/trampoline-js/blob/master/LICENSE).
 
-Copyright (c) 2016 [Prince John Wesley](http://www.toolitup.com)
+Copyright (c) 2016 [Senthil Porunan / Prince John Wesley](http://www.toolitup.com)
